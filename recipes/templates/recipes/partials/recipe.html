@@ -1,9 +1,11 @@
 <div class="recipe recipe-list-item">
-    <div class="recipe-cover">
-        <a href="{% url 'recipes:recipe' recipe.id %}">
-            <img src="{{ recipe.cover.url }}" alt="Temporário">
-        </a>
-    </div>
+    {% if recipe.cover %}
+        <div class="recipe-cover">
+            <a href="{% url 'recipes:recipe' recipe.id %}">
+                <img src="{{ recipe.cover.url }}" alt="Temporário">
+            </a>
+        </div>
+    {% endif %}
     <div class="recipe-title-container">
         <h2 class="recipe-title">
             <a href="{% url 'recipes:recipe' recipe.id %}">
@@ -13,13 +15,16 @@
     </div>
 
     <div class="recipe-author">
-        <span class="recipe-author-item">
-            <i class="fas fa-user"></i>
-            {% if recipe.author.first_name %}
-                {{ recipe.author.first_name }} {{ recipe.author.last_name }}
-            {% else %}
-                {{ recipe.author.username }}
-            {% endif %}
+            {% if recipe.author is not None %}
+            <span class="recipe-author-item">
+                <i class="fas fa-user"></i>
+                {% if recipe.author.first_name %}
+                    {{ recipe.author.first_name }} {{ recipe.author.last_name }}
+                {% else %}
+                    {{ recipe.author.username }}
+                {% endif %}
+            </span>
+            {% endif %} 
         </span>
         <span class="recipe-author-item">
             <i class="fas fa-calendar-alt"></i>
