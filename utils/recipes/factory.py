@@ -1,4 +1,3 @@
-# from inspect import signature
 from random import randint
 
 from faker import Faker
@@ -9,7 +8,6 @@ def rand_ratio():
 
 
 fake = Faker('pt_BR')
-# print(signature(fake.random_number))
 
 
 def make_recipe():
