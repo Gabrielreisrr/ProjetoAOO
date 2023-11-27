@@ -8,7 +8,7 @@ from recipes.models import Recipe
 
 from authors.forms.recipe_form import AuthorRecipeForm
 
-from .forms import LoginForm, RegisterForm
+from ..forms import LoginForm, RegisterForm
 
 
 def register_view(request):
@@ -119,7 +119,6 @@ def dashboard_recipe_edit(request, id):
     )
 
     if form.is_valid():
-        # Agora, o form é válido e eu posso tentar salvar
         recipe = form.save(commit=False)
 
         recipe.author = request.user
@@ -169,7 +168,6 @@ def dashboard_recipe_new(request):
             'form_action': reverse('authors:dashboard_recipe_new')
         }
     )
-
 
 @login_required(login_url='authors:login', redirect_field_name='next')
 def dashboard_recipe_delete(request):
