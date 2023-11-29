@@ -14,6 +14,8 @@ class AuthorRecipeForm(forms.ModelForm):
         self._my_errors = defaultdict(list)
 
         add_attr(self.fields.get('preparation_steps'), 'class', 'span-2')
+        add_attr(self.fields.get('preparation_time'), 'min', '0')
+        add_attr(self.fields.get('servings'), 'min', '0')
 
     class Meta:
         model = Recipe
