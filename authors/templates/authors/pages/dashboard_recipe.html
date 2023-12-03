@@ -1,10 +1,11 @@
 {% extends 'global/base.html' %}
 
-{% block title %}Dashboard Recipe | {% endblock title %}
+{% block title %}Painel de Receitas | {% endblock title %}
 
 {% block content %}
+{% include 'global/partials/search.html' %}
   <div class="main-content center container">
-    <h2>Dashboard Recipe</h2>
+    <h2>Painel de Receitas</h2>
     {% include 'global/partials/messages.html' %}
     {% include 'authors/partials/login_message.html' %}
 
