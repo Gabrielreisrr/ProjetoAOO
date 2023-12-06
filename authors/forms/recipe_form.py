@@ -51,8 +51,8 @@ class AuthorRecipeForm(forms.ModelForm):
         description = cd.get('description')
 
         if title == description:
-            self._my_errors['title'].append('Cannot be equal to description')
-            self._my_errors['description'].append('Cannot be equal to title')
+            self._my_errors['title'].append('Não pode ser igual a descrição')
+            self._my_errors['description'].append('Não pode ser igual ao título')
 
         if self._my_errors:
             raise ValidationError(self._my_errors)
@@ -63,7 +63,7 @@ class AuthorRecipeForm(forms.ModelForm):
         title = self.cleaned_data.get('title')
 
         if len(title) < 5:
-            self._my_errors['title'].append('Must have at least 5 chars.')
+            self._my_errors['title'].append('Precisa ter pelo menos 5 caracteres.')
 
         return title
 
@@ -81,6 +81,6 @@ class AuthorRecipeForm(forms.ModelForm):
         field_value = self.cleaned_data.get(field_name)
 
         if not is_positive_number(field_value):
-            self._my_errors[field_name].append('Must be a positive number')
+            self._my_errors[field_name].append('Precisa ser um numero positivo')
 
         return field_value
