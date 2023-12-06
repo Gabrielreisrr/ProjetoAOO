@@ -32,7 +32,7 @@ def register_create(request):
         user = form.save(commit=False)
         user.set_password(user.password)
         user.save()
-        messages.success(request, 'Your user is created, please log in.')
+        messages.success(request, 'Seu Usuário foi criado, por favor faça login.')
 
         del(request.session['register_form_data'])
         return redirect(reverse('authors:login'))
@@ -61,12 +61,12 @@ def login_create(request):
         )
 
         if authenticated_user is not None:
-            messages.success(request, 'Your are logged in.')
+            messages.success(request, 'Voce está logado.')
             login(request, authenticated_user)
         else:
-            messages.error(request, 'Invalid credentials')
+            messages.error(request, 'Credenciais inválidas')
     else:
-        messages.error(request, 'Invalid username or password')
+        messages.error(request, 'Usuário ou senha invalida')
 
     return redirect(reverse('authors:dashboard'))
 
@@ -74,14 +74,14 @@ def login_create(request):
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_view(request):
     if not request.POST:
-        messages.error(request, 'Invalid logout request')
+        messages.error(request, 'Solicitação de logout inválida')
         return redirect(reverse('authors:login'))
 
     if request.POST.get('username') != request.user.username:
-        messages.error(request, 'Invalid logout user')
+        messages.error(request, 'Usuário de logout inválido')
         return redirect(reverse('authors:login'))
 
-    messages.success(request, 'Logged out successfully')
+    messages.success(request, 'Logout feito com sucesso')
     logout(request)
     return redirect(reverse('authors:login'))
 
@@ -189,5 +189,5 @@ def dashboard_recipe_delete(request):
         raise Http404()
 
     recipe.delete()
-    messages.success(request, 'Deleted successfully.')
+    messages.success(request, 'Deletada com sucesso.')
     return redirect(reverse('authors:dashboard'))
